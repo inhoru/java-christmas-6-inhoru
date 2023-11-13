@@ -1,13 +1,10 @@
 package christmas.view;
 
 
-import christmas.domain.Date;
-import christmas.domain.Menu;
-import christmas.domain.Order;
+import christmas.domain.*;
 
-import java.util.List;
+
 import java.util.Map;
-
 
 import static christmas.util.Message.*;
 
@@ -15,17 +12,42 @@ public class OutputView {
 
 
 
-    public static void printResult(Date orderdate, Order order) {
-        System.out.println("12월 "+orderdate.getOrderDate()+"일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n");
+    public static void printResult(Event event) {
+        System.out.println("12월 "+event.getDate().getOrderDate()+"일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n");
 
         System.out.println(ORDER_MENU);
-        System.out.println(order.toString());
+        System.out.println(event.getOrder().toString());
 
         System.out.println(BEFORE_TOTAL_PRICE);
-        System.out.println(String.format("%,d원",   order.calculateTotalPrice()));
+        int beforeTotalPrice = event.getOrder().calculateTotalPrice();
+        System.out.printf("%,d원\n%n",beforeTotalPrice);
+
+        System.out.println(GIFT_MENU);
+        giftMenu(event);
+
+        System.out.println(BENEFITS_DETAILS);
+
+
 
 
     }
+
+
+    private static void giftMenu(Event event){
+        GiftMenu giftMenu = event.giftMenu();
+        if(giftMenu!=null){
+            System.out.println(giftMenu.getGiftName() + " " + giftMenu.getGiftNumber() + "개\n");
+            return;
+        }
+        printNo();
+    }
+    
+    private static void printNo(){
+        System.out.println(NONE);
+    }
+
+
+
 
 
 

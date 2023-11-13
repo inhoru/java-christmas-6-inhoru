@@ -2,6 +2,7 @@ package christmas.controller;
 
 
 import christmas.domain.Date;
+import christmas.domain.Event;
 import christmas.domain.Order;
 import christmas.view.InputView;
 
@@ -15,7 +16,9 @@ public class OrderController {
         Date orderDate = getDate();
         Order order = getMenu();
 
-        printResult(orderDate,order);
+
+
+        printResult(new Event(order,orderDate));
 
 
 

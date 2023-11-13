@@ -7,6 +7,7 @@ public class Const {
     public static final int ZERO = 0;
     public static final int ONE = 1;
     public static final int TWENTY = 20;
+    public static final int  GiftMenuAmount= 120000;
 
 
 }

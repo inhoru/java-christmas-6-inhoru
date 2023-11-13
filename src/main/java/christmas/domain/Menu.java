@@ -31,6 +31,12 @@ public enum Menu {
         this.price = price;
     }
 
+    public static String getGiftMenuName() {
+        return BEVERAGE_CHAMPAGNE.menuName;
+    }public static int getGiftMenuPrice() {
+        return BEVERAGE_CHAMPAGNE.price;
+    }
+
 
 
 
@@ -41,4 +47,6 @@ public enum Menu {
     public int getPrice() {
         return price;
     }
+
+
 }
