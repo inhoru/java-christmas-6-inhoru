@@ -1,5 +1,9 @@
 package christmas.domain;
 
+import java.util.Map;
+
+import static christmas.util.Const.ZERO;
+
 public enum Menu {
     APPETIZER_YANG_SONGI_SOUP("양송이수프", 6000),
     APPETIZER_TAPAS("타파스", 5500),
@@ -15,10 +19,7 @@ public enum Menu {
     BEVERAGE_ZERO_COLA("제로콜라", 3000),
     BEVERAGE_RED_WINE("레드와인", 60000),
     BEVERAGE_CHAMPAGNE("샴페인", 25000),
-    EMPTY("",0);
-
-
-
+    EMPTY("", 0);
 
 
     private final String menuName;
@@ -31,9 +32,12 @@ public enum Menu {
     }
 
 
+
+
     public String getName() {
         return menuName;
     }
+
     public int getPrice() {
         return price;
     }
