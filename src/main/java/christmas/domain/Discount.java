@@ -74,12 +74,21 @@ public class Discount {
 
         return totalDiscount;
     }
+
     private static boolean weekend(LocalDate date) {
         DayOfWeek dayOfWeek = date.getDayOfWeek();
         return dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY;
     }
 
+    private static int calculateSpecialDay(int orderDay) {
+        LocalDate orderLocalDate = LocalDate.of(2023, 12, orderDay);
+        DayOfWeek dayOfWeek = orderLocalDate.getDayOfWeek();
+        if (dayOfWeek == DayOfWeek.SUNDAY) {
+            return SPECIAL_DISCOUNT;
+
+        }
+        return ZERO;
 
 
-
+    }
 }
