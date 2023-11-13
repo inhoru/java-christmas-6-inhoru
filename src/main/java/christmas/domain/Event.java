@@ -7,9 +7,6 @@ import static christmas.util.Const.*;
 
 public class Event {
 
-    private static final LocalDate START = LocalDate.of(2023, 12, 1);
-    private static final LocalDate END = LocalDate.of(2023, 12, 31);
-
     private final Order order;
 
     private final Date date;
@@ -21,11 +18,10 @@ public class Event {
 
     public GiftMenu giftMenu() {
         if (order.calculateTotalPrice() >= GiftMenuAmount) {
-         return new GiftMenu(getGiftMenuName(),getGiftMenuPrice());
+         return new GiftMenu(getGiftMenuName());
         }
         return null;
     }
-
 
 
     public Order getOrder() {
