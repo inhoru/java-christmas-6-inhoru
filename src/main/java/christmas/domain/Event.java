@@ -18,7 +18,7 @@ public class Event {
 
     public GiftMenu giftMenu() {
         if (order.calculateTotalPrice() >= GiftMenuAmount) {
-         return new GiftMenu(getGiftMenuName());
+         return new GiftMenu(getGiftMenuName(),getGiftMenuPrice());
         }
         return null;
     }
