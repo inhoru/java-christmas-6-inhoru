@@ -19,17 +19,18 @@ public class OutputView {
         System.out.println(event.getOrder().toString());
 
         System.out.println(BEFORE_TOTAL_PRICE);
-        int beforeTotalPrice = event.getOrder().calculateTotalPrice();
-        System.out.printf("%,d원\n%n",beforeTotalPrice);
+        printBeforeTotalPrice(event);
 
         System.out.println(GIFT_MENU);
         giftMenu(event);
 
         System.out.println(BENEFITS_DETAILS);
 
+    }
 
-
-
+    private static void printBeforeTotalPrice(Event event){
+        int beforeTotalPrice = event.getOrder().calculateTotalPrice();
+        System.out.printf("%,d원\n%n",beforeTotalPrice);
     }
 
 
