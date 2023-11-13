@@ -5,6 +5,8 @@ import christmas.domain.Date;
 import christmas.domain.Order;
 import christmas.view.InputView;
 
+import static christmas.view.OutputView.printResult;
+
 
 public class OrderController {
     InputView inputView = new InputView();
@@ -12,7 +14,10 @@ public class OrderController {
     public void start() {
         Date orderDate = getDate();
         Order order = getMenu();
-        System.out.println(order.getOrderMenu());
+
+        printResult(orderDate,order);
+
+
 
 
     }
@@ -33,7 +38,6 @@ public class OrderController {
             System.out.println(e.getMessage());
             return getMenu();
         }
-
-
     }
+
 }
