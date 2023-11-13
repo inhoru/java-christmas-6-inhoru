@@ -38,6 +38,47 @@ public class Discount {
         return ZERO;
     }
 
+    private static int calculateWeek(Event event) {
+        int orderDate = event.getDate().getOrderDate();
+        Map<Menu, Integer> orderMenu = event.getOrder().getOrderMenu();
+        LocalDate orderLocalDate = LocalDate.of(2023, 12, orderDate);
+
+        int totalDiscount = 0;
+        for (Map.Entry<Menu, Integer> entry : orderMenu.entrySet()) {
+            Menu menu = entry.getKey();
+            if (weekday(orderLocalDate) && menu.name().contains("DESSERT")) {
+                totalDiscount += WEEKDAY_DISCOUNT_DESSERT;
+            }
+        }
+
+        return totalDiscount;
+    }
+
+    private static boolean weekday(LocalDate date) {
+        DayOfWeek dayOfWeek = date.getDayOfWeek();
+        return dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY;
+    }
+
+    private static int calculateWeekend(Event event) {
+        int orderDate = event.getDate().getOrderDate();
+        Map<Menu, Integer> orderMenu = event.getOrder().getOrderMenu();
+        LocalDate orderLocalDate = LocalDate.of(2023, 12, orderDate);
+
+        int totalDiscount = ZERO;
+        for (Map.Entry<Menu, Integer> entry : orderMenu.entrySet()) {
+            Menu menu = entry.getKey();
+            if (weekend(orderLocalDate) && menu.name().contains("MAIN")) {
+                totalDiscount += WEEKEND_DISCOUNT_MAIN;
+            }
+        }
+
+        return totalDiscount;
+    }
+    private static boolean weekend(LocalDate date) {
+        DayOfWeek dayOfWeek = date.getDayOfWeek();
+        return dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY;
+    }
+
 
 
 
