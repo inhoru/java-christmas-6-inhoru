@@ -2,10 +2,12 @@ package christmas.controller;
 
 
 import christmas.domain.Date;
+import christmas.domain.Discount;
 import christmas.domain.Event;
 import christmas.domain.Order;
 import christmas.view.InputView;
 
+import static christmas.domain.Discount.*;
 import static christmas.view.OutputView.printResult;
 
 
@@ -17,11 +19,10 @@ public class OrderController {
         Order order = getMenu();
 
 
+        Event event = new Event(order,orderDate);
+        Discount discount = new Discount(event);
 
-        printResult(new Event(order,orderDate));
-
-
-
+        printResult(event,discount);
 
     }
 

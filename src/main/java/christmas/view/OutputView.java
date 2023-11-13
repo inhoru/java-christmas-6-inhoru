@@ -12,7 +12,7 @@ public class OutputView {
 
 
 
-    public static void printResult(Event event) {
+    public static void printResult(Event event,Discount discount) {
         System.out.println("12월 "+event.getDate().getOrderDate()+"일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n");
 
         System.out.println(ORDER_MENU);
@@ -25,7 +25,12 @@ public class OutputView {
         giftMenu(event);
 
         System.out.println(BENEFITS_DETAILS);
+        printBenefitsDetails(discount);
 
+    }
+
+    private static void printBenefitsDetails(Discount discount){
+        System.out.println(discount.toString());
     }
 
     private static void printBeforeTotalPrice(Event event){
