@@ -33,13 +33,8 @@ public enum Menu {
 
     public static String getGiftMenuName() {
         return BEVERAGE_CHAMPAGNE.menuName;
-    }public static int getGiftMenuPrice() {
-        return BEVERAGE_CHAMPAGNE.price;
+
     }
-
-
-
-
     public String getName() {
         return menuName;
     }
