@@ -8,6 +8,7 @@ public class Message {
     public static final String GIFT_MENU = "<증정 메뉴>";
     public static final String BENEFITS_DETAILS = "<혜택 내역>";
     public static final String BEFORE_TOTAL_PRICE = "<할인 전 총주문 금액>";
+    public static final String BENEFITS_TOTAL_PRICE = "<총혜택 금액>";
     public static final String NONE = "없음";
     public static final String D_DAY_DISCOUNT = "크리스마스 디데이 할인";
     public static final String WEEKDAY_DISCOUNT = "평일 할인";

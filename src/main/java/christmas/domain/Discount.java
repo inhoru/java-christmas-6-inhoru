@@ -119,6 +119,9 @@ public class Discount {
         return ZERO;
     }
 
+    public String calculateTotalBenefits(){
+        return "-"+String.format("%,d원", dDayDiscount+weekdayDiscount+weekendDiscount+specialDiscount+giftMenuDiscount);
+    }
 
     @Override
     public String toString() {
