@@ -24,7 +24,7 @@ public class Discount {
         this.giftMenuDiscount = calculateGiftMenu(event);
     }
 
-    private static int calculateDday(int orderDate) {
+    public int calculateDday(int orderDate) {
         if (orderDate >= 1 && orderDate <= 25) {
             int increase = D_DAY_INCREASE_AMOUNT * (orderDate - 1);
             return D_DAY_START_AMOUNT + increase;
@@ -33,7 +33,7 @@ public class Discount {
     }
 
 
-    private static int calculateWeek(Event event) {
+    public int calculateWeek(Event event) {
         int orderDate = event.getDate().getOrderDate();
         Map<Menu, Integer> orderMenu = event.getOrder().getOrderMenu();
         LocalDate orderLocalDate = LocalDate.of(2023, 12, orderDate);
@@ -46,7 +46,7 @@ public class Discount {
         return totalDiscount;
     }
 
-    private static int calculateWeekdayDiscount(LocalDate orderLocalDate, Map.Entry<Menu, Integer> entry) {
+    public int calculateWeekdayDiscount(LocalDate orderLocalDate, Map.Entry<Menu, Integer> entry) {
         Menu menu = entry.getKey();
         int number = entry.getValue();
         int discount = ZERO;
@@ -66,7 +66,7 @@ public class Discount {
         return dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.FRIDAY;
     }
 
-    private static int calculateWeekend(Event event) {
+    public int calculateWeekend(Event event) {
         int orderDate = event.getDate().getOrderDate();
         Map<Menu, Integer> orderMenu = event.getOrder().getOrderMenu();
         LocalDate orderLocalDate = LocalDate.of(2023, 12, orderDate);
@@ -79,7 +79,7 @@ public class Discount {
         return totalDiscount;
     }
 
-    private static int calculateWeekendDiscount(LocalDate orderLocalDate, Map.Entry<Menu, Integer> entry) {
+    public int calculateWeekendDiscount(LocalDate orderLocalDate, Map.Entry<Menu, Integer> entry) {
         Menu menu = entry.getKey();
         int number = entry.getValue();
         int discount = ZERO;
@@ -99,7 +99,7 @@ public class Discount {
         return dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.FRIDAY;
     }
 
-    private static int calculateSpecialDay(int orderDay) {
+    public int calculateSpecialDay(int orderDay) {
         LocalDate orderLocalDate = LocalDate.of(2023, 12, orderDay);
         DayOfWeek dayOfWeek = orderLocalDate.getDayOfWeek();
         if (dayOfWeek == DayOfWeek.SUNDAY) {
