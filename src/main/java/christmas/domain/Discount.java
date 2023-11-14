@@ -119,8 +119,12 @@ public class Discount {
         return ZERO;
     }
 
-    public String calculateTotalBenefits(){
-        return "-"+String.format("%,d원", dDayDiscount+weekdayDiscount+weekendDiscount+specialDiscount+giftMenuDiscount);
+    public int calculateTotalBenefits(){
+        return dDayDiscount+weekdayDiscount+weekendDiscount+specialDiscount+giftMenuDiscount;
+    }
+
+    public int calculateEstimatedAmount(){
+        return dDayDiscount+weekdayDiscount+weekendDiscount+specialDiscount;
     }
 
     @Override
