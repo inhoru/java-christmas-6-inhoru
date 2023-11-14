@@ -10,11 +10,12 @@ public class EventBadge {
     }
 
     public static String calculateBadge(int totalBenefit) {
-        if (totalBenefit >= 20000) return SANTA;
-        if (totalBenefit >= 10000) return TREE;
-        if (totalBenefit >= 5000) return STARS;
+        if (totalBenefit >= EVENT_BADGE_PRICE_SANTA) return SANTA;
+        if (totalBenefit >= EVENT_BADGE_PRICE_TREE) return TREE;
+        if (totalBenefit >= EVENT_BADGE_PRICE_STARS) return STARS;
         return EMPTY;
     }
+
     public String getEventBadge() {
         return eventBadge;
     }

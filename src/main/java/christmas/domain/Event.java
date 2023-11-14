@@ -1,7 +1,5 @@
 package christmas.domain;
 
-import java.time.LocalDate;
-
 import static christmas.domain.Menu.*;
 import static christmas.util.Const.*;
 
@@ -17,8 +15,8 @@ public class Event {
     }
 
     public GiftMenu giftMenu() {
-        if (order.calculateTotalPrice() >= GiftMenuAmount) {
-         return new GiftMenu(getGiftMenuName(),getGiftMenuPrice());
+        if (order.calculateTotalPrice() >= GIFT_MENU_AMOUNT) {
+            return new GiftMenu(getGiftMenuName(), getGiftMenuPrice());
         }
         return null;
     }
@@ -31,7 +29,6 @@ public class Event {
     public Date getDate() {
         return date;
     }
-
 
 
 }

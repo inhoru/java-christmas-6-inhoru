@@ -15,7 +15,7 @@ public class Order {
     }
 
 
-    public  int calculateTotalPrice() {
+    public int calculateTotalPrice() {
         int totalPrice = ZERO;
         for (Menu menu : orderMenu.keySet()) {
             int number = orderMenu.get(menu);

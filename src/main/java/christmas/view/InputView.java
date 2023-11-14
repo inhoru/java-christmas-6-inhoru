@@ -10,7 +10,8 @@ public class InputView {
         System.out.println(INPUT_DATE);
         return Console.readLine();
     }
-    public String inputMenu(){
+
+    public String inputMenu() {
         System.out.println(INPUT_MENU);
         return Console.readLine();
     }

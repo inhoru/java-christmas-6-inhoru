@@ -111,20 +111,20 @@ public class Discount {
 
     }
 
-    private static int calculateGiftMenu(Event event){
+    private static int calculateGiftMenu(Event event) {
         GiftMenu giftMenu = event.giftMenu();
-        if(giftMenu!=null){
+        if (giftMenu != null) {
             return giftMenu.getGiftPrice();
         }
         return ZERO;
     }
 
-    public int calculateTotalBenefits(){
-        return dDayDiscount+weekdayDiscount+weekendDiscount+specialDiscount+giftMenuDiscount;
+    public int calculateTotalBenefits() {
+        return dDayDiscount + weekdayDiscount + weekendDiscount + specialDiscount + giftMenuDiscount;
     }
 
-    public int calculateEstimatedAmount(){
-        return dDayDiscount+weekdayDiscount+weekendDiscount+specialDiscount;
+    public int calculateEstimatedAmount() {
+        return dDayDiscount + weekdayDiscount + weekendDiscount + specialDiscount;
     }
 
     @Override

@@ -13,7 +13,6 @@ public class GiftMenu {
     }
 
 
-
     public int getGiftPrice() {
         return giftPrice;
     }
@@ -21,6 +20,7 @@ public class GiftMenu {
     public String getGiftName() {
         return giftName;
     }
+
     public int getGiftNumber() {
         return GIFT_NUMBER;
     }

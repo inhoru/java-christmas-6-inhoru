@@ -4,8 +4,6 @@ package christmas.controller;
 import christmas.domain.*;
 import christmas.view.InputView;
 
-import static christmas.domain.Discount.*;
-import static christmas.domain.EventBadge.calculateBadge;
 import static christmas.view.OutputView.printResult;
 
 
