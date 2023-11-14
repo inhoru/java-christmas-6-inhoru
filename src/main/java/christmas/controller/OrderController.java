@@ -1,13 +1,11 @@
 package christmas.controller;
 
 
-import christmas.domain.Date;
-import christmas.domain.Discount;
-import christmas.domain.Event;
-import christmas.domain.Order;
+import christmas.domain.*;
 import christmas.view.InputView;
 
 import static christmas.domain.Discount.*;
+import static christmas.domain.EventBadge.calculateBadge;
 import static christmas.view.OutputView.printResult;
 
 
@@ -18,11 +16,12 @@ public class OrderController {
         Date orderDate = getDate();
         Order order = getMenu();
 
-
-        Event event = new Event(order,orderDate);
+        Event event = new Event(order, orderDate);
         Discount discount = new Discount(event);
 
-        printResult(event,discount);
+        String badge = getEventBadge(discount.calculateTotalBenefits());
+
+        printResult(event, discount, badge);
 
     }
 
@@ -42,6 +41,10 @@ public class OrderController {
             System.out.println(e.getMessage());
             return getMenu();
         }
+    }
+
+    private String getEventBadge(int totalBenefit) {
+        return new EventBadge(totalBenefit).getEventBadge();
     }
 
 }

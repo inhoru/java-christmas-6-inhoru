@@ -15,5 +15,10 @@ public class Const {
     public static final int WEEKEND_DISCOUNT_MAIN = 2023;
     public static final int SPECIAL_DISCOUNT = 1000;
 
+    public static final String STARS = "별";
+    public static final String TREE = "트리";
+    public static final String SANTA = "산타";
+    public static final String EMPTY = "없음";
+
 
 }

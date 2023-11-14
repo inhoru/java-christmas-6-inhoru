@@ -5,14 +5,16 @@ import christmas.domain.*;
 
 
 import java.util.Map;
+import java.util.zip.ZipEntry;
 
+import static christmas.util.Const.*;
 import static christmas.util.Message.*;
 
 public class OutputView {
 
 
 
-    public static void printResult(Event event,Discount discount) {
+    public static void printResult(Event event,Discount discount,String badge) {
         printMenu(event);
 
         printBeforeTotalPrice(event);
@@ -22,6 +24,10 @@ public class OutputView {
         printBenefitsDetails(discount);
 
         printBenefitsTotalPrice(discount);
+
+        printEstimatedAmount(discount,event);
+
+        printBadge(badge);
 
     }
 
@@ -36,13 +42,6 @@ public class OutputView {
         System.out.printf("%,d원\n%n",beforeTotalPrice);
     }
 
-
-
-    private static void printBenefitsDetails(Discount discount){
-        System.out.println(BENEFITS_DETAILS);
-        System.out.println(discount.toString());
-    }
-
     private static void printGiftMenu(Event event){
         System.out.println(GIFT_MENU);
         GiftMenu giftMenu = event.giftMenu();
@@ -53,15 +52,42 @@ public class OutputView {
         printNo();
     }
 
-    private static void  printBenefitsTotalPrice(Discount discount){
-        System.out.println(BENEFITS_TOTAL_PRICE);
-        System.out.println(discount.calculateTotalBenefits());
+
+    private static void printBenefitsDetails(Discount discount){
+        System.out.println(BENEFITS_DETAILS);
+        if(discount.calculateTotalBenefits()!=ZERO){
+            System.out.println(discount+"\n");
+            return;
+        }
+        printNo();
+
     }
 
 
-    
+    private static void  printBenefitsTotalPrice(Discount discount){
+        System.out.println(BENEFITS_TOTAL_PRICE);
+        if(discount.calculateTotalBenefits()==0){
+           System.out.println(discount.calculateTotalBenefits()+"원\n");
+           return;
+        }
+        System.out.println("-"+String.format("%,d원",discount.calculateTotalBenefits())+"\n");
+    }
+    private static void  printEstimatedAmount(Discount discount,Event event){
+            int benefitsTotal = discount.calculateEstimatedAmount();
+            int beforeTotal = event.getOrder().calculateTotalPrice();
+            System.out.println(ESTIMATED_AMOUNT);
+            System.out.println(String.format("%,d원",beforeTotal-benefitsTotal)+"\n");
+        }
+
+        private static void  printBadge(String badge){
+            System.out.println(EVENT_BADGE);
+            System.out.println(badge);
+        }
+
+
+
     private static void printNo(){
-        System.out.println(NONE);
+        System.out.println(NONE+"\n");
     }
 
 
