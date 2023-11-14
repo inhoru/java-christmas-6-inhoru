@@ -6,7 +6,7 @@ import static christmas.util.Message.*;
 
 public class InputView {
 
-    public String inputDate() {
+    public String readDate() {
         System.out.println(INPUT_DATE);
         return Console.readLine();
     }

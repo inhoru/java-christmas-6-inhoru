@@ -28,7 +28,7 @@ public class OrderController {
 
     private Date getDate() {
         try {
-            return new Date(inputView.inputDate());
+            return new Date(inputView.readDate());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getDate();
