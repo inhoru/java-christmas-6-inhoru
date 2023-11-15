@@ -80,7 +80,7 @@ public class InputValidator {
     public static void validatorOrderMenuZero(Map<Menu, Integer> orderMenu) {
         for (int value : orderMenu.values()) {
             if (value == ZERO) {
-                throw new IllegalArgumentException(ERROR_ZERO_ORDER_MESSAGE);
+                throw new IllegalArgumentException(ERROR_MENU_MESSAGE);
             }
         }
     }

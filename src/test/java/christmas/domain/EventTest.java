@@ -44,10 +44,10 @@ public class EventTest {
         Order order = new Order("티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1");
         Date date = new Date("3");
         Event event = new Event(order, date);
-        Discount discount = new Discount(event);
 
         // when
-        int dDay = discount.calculateDday(event.getDate().getOrderDate());
+        Discount discount = new Discount(event);
+        int dDay = discount.calculateDday(event);
 
         // then
         assertThat(dDay).isEqualTo(1200);
@@ -92,10 +92,10 @@ public class EventTest {
         Order order = new Order("양송이수프-2,타파스-1,아이스크림-1,해산물파스타-1");
         Date date = new Date("31");
         Event event = new Event(order, date);
-        Discount discount = new Discount(event);
 
         // when
-        int special = discount.calculateSpecialDay(date.getOrderDate());
+        Discount discount = new Discount(event);
+        int special = discount.calculateSpecialDay(event);
 
         // then
         assertThat(special).isEqualTo(1000);

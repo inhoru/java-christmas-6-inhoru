@@ -16,16 +16,17 @@ public class Discount {
 
 
     public Discount(Event event) {
-        int orderDate = event.getDate().getOrderDate();
-        this.dDayDiscount = calculateDday(orderDate);
-        this.specialDiscount = calculateSpecialDay(orderDate);
+        this.dDayDiscount = calculateDday(event);
+        this.specialDiscount = calculateSpecialDay(event);
         this.weekdayDiscount = calculateWeek(event);
         this.weekendDiscount = calculateWeekend(event);
         this.giftMenuDiscount = calculateGiftMenu(event);
     }
 
-    public int calculateDday(int orderDate) {
-        if (orderDate >= 1 && orderDate <= 25) {
+    public int calculateDday(Event event) {
+        int orderDate = event.getDate().getOrderDate();
+        int totalPrice = event.getOrder().calculateTotalPrice();
+        if (orderDate >= 1 && orderDate <= 25&&totalPrice>=10000) {
             int increase = D_DAY_INCREASE_AMOUNT * (orderDate - 1);
             return D_DAY_START_AMOUNT + increase;
         }
@@ -35,23 +36,24 @@ public class Discount {
 
     public int calculateWeek(Event event) {
         int orderDate = event.getDate().getOrderDate();
+        int totalPrice = event.getOrder().calculateTotalPrice();
         Map<Menu, Integer> orderMenu = event.getOrder().getOrderMenu();
         LocalDate orderLocalDate = LocalDate.of(2023, 12, orderDate);
         int totalDiscount = ZERO;
 
         for (Map.Entry<Menu, Integer> entry : orderMenu.entrySet()) {
-            totalDiscount += calculateWeekdayDiscount(orderLocalDate, entry);
+            totalDiscount += calculateWeekdayDiscount(orderLocalDate, entry,totalPrice);
         }
 
         return totalDiscount;
     }
 
-    public int calculateWeekdayDiscount(LocalDate orderLocalDate, Map.Entry<Menu, Integer> entry) {
+    public int calculateWeekdayDiscount(LocalDate orderLocalDate, Map.Entry<Menu, Integer> entry,int totalPrice) {
         Menu menu = entry.getKey();
         int number = entry.getValue();
         int discount = ZERO;
 
-        if (weekday(orderLocalDate) && menu.getCategory().equals("dessert")) {
+        if (weekday(orderLocalDate) && menu.getCategory().equals("dessert")&&totalPrice>=10000) {
             for (int i = 0; i < number; i++) {
                 discount += WEEKDAY_DISCOUNT_DESSERT;
             }
@@ -69,22 +71,23 @@ public class Discount {
     public int calculateWeekend(Event event) {
         int orderDate = event.getDate().getOrderDate();
         Map<Menu, Integer> orderMenu = event.getOrder().getOrderMenu();
+        int totalPrice = event.getOrder().calculateTotalPrice();
         LocalDate orderLocalDate = LocalDate.of(2023, 12, orderDate);
         int totalDiscount = ZERO;
 
         for (Map.Entry<Menu, Integer> entry : orderMenu.entrySet()) {
-            totalDiscount += calculateWeekendDiscount(orderLocalDate, entry);
+            totalDiscount += calculateWeekendDiscount(orderLocalDate, entry,totalPrice);
         }
 
         return totalDiscount;
     }
 
-    public int calculateWeekendDiscount(LocalDate orderLocalDate, Map.Entry<Menu, Integer> entry) {
+    public int calculateWeekendDiscount(LocalDate orderLocalDate, Map.Entry<Menu, Integer> entry,int totalPrice) {
         Menu menu = entry.getKey();
         int number = entry.getValue();
         int discount = ZERO;
 
-        if (weekend(orderLocalDate) && menu.getCategory().equals("main")) {
+        if (weekend(orderLocalDate) && menu.getCategory().equals("main")&&totalPrice>=10000) {
             for (int i = 0; i < number; i++) {
                 discount += WEEKEND_DISCOUNT_MAIN;
             }
@@ -99,10 +102,12 @@ public class Discount {
         return dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.FRIDAY;
     }
 
-    public int calculateSpecialDay(int orderDay) {
-        LocalDate orderLocalDate = LocalDate.of(2023, 12, orderDay);
+    public int calculateSpecialDay(Event event) {
+        int orderDate = event.getDate().getOrderDate();
+        int totalPrice = event.getOrder().calculateTotalPrice();
+        LocalDate orderLocalDate = LocalDate.of(2023, 12, orderDate);
         DayOfWeek dayOfWeek = orderLocalDate.getDayOfWeek();
-        if (dayOfWeek == DayOfWeek.SUNDAY) {
+        if (orderDate == 25 || dayOfWeek== DayOfWeek.SUNDAY&&totalPrice>=10000) {
             return SPECIAL_DISCOUNT;
 
         }
